@@ -1,0 +1,34 @@
+{% if channels %}
+<div class="table-responsive">
+  <table class="table table-sm table-channels mb-0">
+    <thead>
+      <tr>
+        <th style="width:2rem"></th>
+        <th>Канал</th>
+        <th class="text-end">Кол-во</th>
+        <th class="text-end">Min</th>
+        <th class="text-end">Max</th>
+        <th class="text-end">Avg</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ch in channels %}
+      <tr>
+        <td>
+          <input type="checkbox" class="form-check-input channel-checkbox" value="{{ ch.channel }}" checked>
+        </td>
+        <td><code>{{ ch.channel }}</code>{% if ch.get is defined and ch.get('tag') %} <span class="badge bg-secondary">{{ ch.tag }}</span>{% endif %}</td>
+        <td class="text-end text-muted">{{ ch.count }}</td>
+        <td class="text-end">{{ "%.3f" | format(ch.min) if ch.min is not none else "—" }}</td>
+        <td class="text-end">{{ "%.3f" | format(ch.max) if ch.max is not none else "—" }}</td>
+        <td class="text-end">{{ "%.3f" | format(ch.avg) if ch.avg is not none else "—" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="text-muted text-center py-3 mb-0">
+  <i class="bi bi-graph-up me-1"></i>Нет данных. Импортируйте файл.
+</p>
+{% endif %}

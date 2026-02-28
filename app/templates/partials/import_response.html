@@ -1,0 +1,28 @@
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <i class="bi bi-exclamation-triangle-fill me-2"></i><strong>Ошибка:</strong> {{ error }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% else %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <i class="bi bi-check-circle-fill me-2"></i>
+  Импортировано <strong>{{ result.inserted }}</strong> точек.
+  {% if result.skipped %}<span class="text-muted"> Пропущено: {{ result.skipped }}.</span>{% endif %}
+  {% if result.errors %}<span class="text-warning"> Ошибок: {{ result.errors }}.</span>{% endif %}
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endif %}
+
+<div id="import-history" hx-swap-oob="true">
+  {% include "partials/import_history.html" %}
+</div>
+
+{% if not error %}
+<div id="channels-table-wrapper" hx-swap-oob="true">
+  {% include "partials/channels_table.html" %}
+</div>
+
+<div id="summary-section" hx-swap-oob="true">
+  {% include "partials/summary_cards.html" %}
+</div>
+{% endif %}

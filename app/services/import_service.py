@@ -12,6 +12,8 @@ from typing import Any
 from fastapi import HTTPException, UploadFile
 from sqlalchemy.orm import Session
 
+from sqlalchemy import select
+
 from app.models import DataPoint, ImportRun
 
 logger = logging.getLogger(__name__)
@@ -222,3 +224,30 @@ async def import_file(file: UploadFile, experiment_id: int, db: Session) -> dict
         "skipped": skipped,
         "errors": errors,
     }
+
+
+def list_import_runs_for_experiment(
+    db: Session,
+    experiment_id: int,
+    *,
+    limit: int = 20,
+) -> list[dict[str, object]]:
+    """Возвращает историю импортов для конкретного эксперимента (новые первыми)."""
+    stmt = (
+        select(ImportRun)
+        .where(ImportRun.experiment_id == experiment_id)
+        .order_by(ImportRun.started_at.desc())
+        .limit(limit)
+    )
+    rows = db.scalars(stmt).all()
+    return [
+        {
+            "id": run.id,
+            "started_at": run.started_at.isoformat(),
+            "filename": run.filename,
+            "inserted": run.inserted,
+            "skipped": run.skipped,
+            "errors": run.errors,
+        }
+        for run in rows
+    ]

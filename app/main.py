@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from app.db import engine
 from app.models import Base
-from app.routers import analytics, experiments, export, import_data
+from app.routers import analytics, experiments, export, import_data, web
 
 Base.metadata.create_all(bind=engine)
 
@@ -18,3 +18,4 @@ app.include_router(experiments.router)
 app.include_router(import_data.router)
 app.include_router(analytics.router)
 app.include_router(export.router)
+app.include_router(web.router)

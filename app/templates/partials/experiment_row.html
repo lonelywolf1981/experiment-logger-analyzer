@@ -1,0 +1,25 @@
+<tr id="exp-{{ experiment.id }}">
+  <td>
+    <a href="/ui/experiments/{{ experiment.id }}" class="fw-semibold text-decoration-none">
+      {{ experiment.name }}
+    </a>
+    {% if experiment.notes %}
+    <div class="text-muted small">{{ experiment.notes }}</div>
+    {% endif %}
+  </td>
+  <td class="text-muted">{{ experiment.stand or "—" }}</td>
+  <td class="text-muted">{{ experiment.operator or "—" }}</td>
+  <td class="text-muted small">{{ experiment.created_at.strftime("%d.%m.%Y %H:%M") }}</td>
+  <td class="text-end">
+    <a href="/ui/experiments/{{ experiment.id }}" class="btn btn-sm btn-outline-primary me-1">
+      <i class="bi bi-arrow-right-circle"></i> Открыть
+    </a>
+    <button class="btn btn-sm btn-outline-danger"
+            hx-delete="/ui/experiments/{{ experiment.id }}"
+            hx-target="#exp-{{ experiment.id }}"
+            hx-swap="outerHTML"
+            hx-confirm="Удалить эксперимент «{{ experiment.name }}»? Все данные будут удалены.">
+      <i class="bi bi-trash"></i>
+    </button>
+  </td>
+</tr>

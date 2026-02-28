@@ -1,0 +1,30 @@
+{% if import_history %}
+<div class="table-responsive">
+  <table class="table table-sm table-hover mb-0">
+    <thead>
+      <tr>
+        <th>Файл</th>
+        <th>Время</th>
+        <th class="text-end text-success">Записано</th>
+        <th class="text-end text-warning">Пропущено</th>
+        <th class="text-end text-danger">Ошибок</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for run in import_history %}
+      <tr>
+        <td class="text-truncate" style="max-width:180px" title="{{ run.filename }}">
+          <i class="bi bi-file-earmark-text me-1 text-muted"></i>{{ run.filename }}
+        </td>
+        <td class="text-muted small">{{ run.started_at[:19].replace("T", " ") }}</td>
+        <td class="text-end fw-semibold text-success">{{ run.inserted }}</td>
+        <td class="text-end text-warning">{{ run.skipped }}</td>
+        <td class="text-end text-danger">{{ run.errors }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="text-muted small mb-0">История импортов пуста.</p>
+{% endif %}

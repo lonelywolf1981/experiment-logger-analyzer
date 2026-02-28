@@ -1,0 +1,51 @@
+<div class="row g-3 mb-4">
+  <div class="col-6 col-md-3">
+    <div class="card text-center h-100">
+      <div class="card-body py-3">
+        <div class="fs-2 fw-bold text-primary">{{ summary.total_points }}</div>
+        <div class="text-muted small">Точек данных</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card text-center h-100">
+      <div class="card-body py-3">
+        <div class="fs-2 fw-bold text-primary">{{ summary.channels_count }}</div>
+        <div class="text-muted small">Каналов</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card text-center h-100">
+      <div class="card-body py-3">
+        {% if summary.duration_seconds is not none %}
+          {% set mins = (summary.duration_seconds / 60) | round(1) %}
+          <div class="fs-2 fw-bold text-primary">{{ mins }}</div>
+          <div class="text-muted small">Минут</div>
+        {% else %}
+          <div class="fs-2 fw-bold text-muted">—</div>
+          <div class="text-muted small">Длительность</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="card text-center h-100">
+      <div class="card-body py-3">
+        {% if summary.points_by_quality %}
+          {% for quality, count in summary.points_by_quality.items() %}
+            <span class="badge me-1
+              {% if quality == 'OK' %}bg-success
+              {% elif quality == 'WARN' %}bg-warning text-dark
+              {% else %}bg-danger{% endif %}">
+              {{ quality }}: {{ count }}
+            </span>
+          {% endfor %}
+        {% else %}
+          <span class="text-muted">—</span>
+        {% endif %}
+        <div class="text-muted small mt-1">Качество</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Эксперименты — Experiment Logger{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0">Эксперименты</h1>
+  <button class="btn btn-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#create-form">
+    <i class="bi bi-plus-lg me-1"></i>Создать
+  </button>
+</div>
+
+<div class="collapse mb-4" id="create-form">
+  <div class="card">
+    <div class="card-body">
+      <h6 class="card-title mb-3">Новый эксперимент</h6>
+      <form hx-post="/ui/experiments"
+            hx-target="#experiment-table-body"
+            hx-swap="afterbegin"
+            hx-on::after-request="if(event.detail.successful){this.reset();bootstrap.Collapse.getInstance(document.getElementById('create-form')).hide();document.getElementById('no-experiments-row')?.remove();}">
+        <div class="row g-2">
+          <div class="col-12 col-md-4">
+            <input type="text" name="name" class="form-control form-control-sm" placeholder="Название *" required>
+          </div>
+          <div class="col-12 col-md-3">
+            <input type="text" name="stand" class="form-control form-control-sm" placeholder="Стенд">
+          </div>
+          <div class="col-12 col-md-3">
+            <input type="text" name="operator" class="form-control form-control-sm" placeholder="Оператор">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary btn-sm">Создать</button>
+          </div>
+          <div class="col-12">
+            <input type="text" name="notes" class="form-control form-control-sm" placeholder="Комментарий (необязательно)">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead class="table-light">
+      <tr>
+        <th>Название</th>
+        <th>Стенд</th>
+        <th>Оператор</th>
+        <th>Создан</th>
+        <th class="text-end">Действия</th>
+      </tr>
+    </thead>
+    <tbody id="experiment-table-body">
+      {% for experiment in experiments %}
+        {% include "partials/experiment_row.html" %}
+      {% endfor %}
+      {% if not experiments %}
+      <tr id="no-experiments-row">
+        <td colspan="5" class="text-center text-muted py-5">
+          <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+          Экспериментов пока нет. Нажмите «Создать».
+        </td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
