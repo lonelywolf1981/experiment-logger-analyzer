@@ -1,0 +1,6 @@
+{"timestamp":"2026-02-28T21:05:10+05:00","channel":"STATE","value":1,"quality":"OK","tag":"experiment"}
+{"timestamp":"2026-02-28T21:06:00+05:00","channel":"TEMP_A","value":3.125,"unit":"C","quality":"OK","tag":"temp"}
+{"timestamp":"2026-02-28T21:06:00+05:00","channel":"TEMP_B","value":3.081,"unit":"C","quality":"OK","tag":"temp"}
+{"timestamp":"2026-02-28T21:06:00+05:00","channel":"PRESS_1","value":1.023,"unit":"bar","quality":"OK","tag":"pressure"}
+{"timestamp":"2026-02-28T21:10:05+05:00","channel":"POWER_1","value":420.5,"unit":"W","quality":"OK","tag":"power"}
+{"timestamp":"2026-02-28T21:12:00+05:00","channel":"STATE","value":0,"quality":"OK","tag":"experiment"}
