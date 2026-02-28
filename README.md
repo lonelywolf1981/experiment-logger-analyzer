@@ -48,8 +48,8 @@ Experiment Logger решает это без Excel и скриптов: загр
 
 <table>
   <tr>
-    <td><img src="screenshots/list-light.png" alt="Experiments list — light" width="100%"></td>
-    <td><img src="screenshots/list-dark.png" alt="Experiments list — dark" width="100%"></td>
+    <td><img src="screenshots/main-light.png" alt="Experiments list — light" width="100%"></td>
+    <td><img src="screenshots/main-dark.png" alt="Experiments list — dark" width="100%"></td>
   </tr>
   <tr>
     <td align="center">Светлая тема</td>
@@ -57,12 +57,12 @@ Experiment Logger решает это без Excel и скриптов: загр
   </tr>
 </table>
 
-### График по каналам — светлая и тёмная тема
+### Страница эксперимента с графиком — светлая и тёмная тема
 
 <table>
   <tr>
-    <td><img src="screenshots/chart-light.png" alt="Chart — light" width="100%"></td>
-    <td><img src="screenshots/chart-dark.png" alt="Chart — dark" width="100%"></td>
+    <td><img src="screenshots/exp-light.png" alt="Experiment detail — light" width="100%"></td>
+    <td><img src="screenshots/exp-dark.png" alt="Experiment detail — dark" width="100%"></td>
   </tr>
   <tr>
     <td align="center">Светлая тема</td>
@@ -70,16 +70,14 @@ Experiment Logger решает это без Excel и скриптов: загр
   </tr>
 </table>
 
-### Импорт данных и таблица каналов
+### API-документация
 
 <table>
   <tr>
-    <td><img src="screenshots/import.png" alt="Import section" width="100%"></td>
-    <td><img src="screenshots/channels.png" alt="Channels table" width="100%"></td>
+    <td><img src="screenshots/api-docs.png" alt="Swagger / OpenAPI" width="50%"></td>
   </tr>
   <tr>
-    <td align="center">Импорт CSV / JSONL</td>
-    <td align="center">Каналы со статистикой</td>
+    <td align="center">Swagger / OpenAPI</td>
   </tr>
 </table>
 
